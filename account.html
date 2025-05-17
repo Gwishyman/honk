@@ -22,7 +22,7 @@
   <a href="index.html" onclick="logout()">Log Out</a>
 
   <script>
-    const user = localStorage.getItem("username");
+    const user = localStorage.getItem("loggedInUser");
     if (!user) window.location.href = "index.html";
 
     document.getElementById("user").textContent = "Username: @" + user;
