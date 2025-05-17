@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Honk- Login</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(to right, #000000, #111111);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+    }
+
+    .login-box {
+      background-color: #1c1c1c;
+      padding: 60px 50px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      text-align: center;
+      width: 400px;
+    }
+
+    .login-box h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .login-box h4 {
+      margin-bottom: 30px;
+      font-weight: normal;
+      color: #aaa;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      margin: 20px 0;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      background-color: #333;
+      color: white;
+    }
+
+    input::placeholder {
+      color: #999;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: #fe2c55;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff4d6d;
+    }
+
+    .error {
+      color: #ff6666;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-box">
+  <h2>Login to Continue</h2>
+  <h4>Prototype by Gwishyman</h4>
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+  <div id="error" class="error"></div>
+</div>
+
+<script>
+  function login() {
+    const user = document.getElementById('username').value.trim();
+    const pass = document.getElementById('password').value.trim();
+
+    if (user && pass) {
+      // Fake authentication for now (only checks for any input)
+      localStorage.setItem("username", user);
+      document.getElementById('error').innerText = 'Logging in...';
+      setTimeout(() => {
+        window.location.href = 'home.html';
+      }, 800);
+    } else {
+      document.getElementById('error').innerText = 'Please enter both username and password.';
+    }
+  }
+</script>
+
+</body>
+</html>
