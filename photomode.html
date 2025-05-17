@@ -42,29 +42,48 @@
     }
 
     .nav {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: #1e1e1e;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      border-top: 1px solid #333;
-    }
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  z-index: 100;
+  background: transparent; /* No background */
+}
 
-    .nav a {
-      color: #aaa;
-      text-decoration: none;
-      font-size: 45px;
-    }
+.nav a {
+  color: white;
+  font-size: 64px;
+  text-decoration: none;
+  font-weight: bold;
+  text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000; /* Outline effect */
+}
 
-    .nav a.active {
-      color: #fff;
-      font-weight: bold;
+.nav a.active {
+  color: #ff2d55;
+}
+
+.nav img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
     }
   </style>
 </head>
 <body>
+
+<div class="nav">
+  <a href="photomode.html" class="active">Photos</a>
+  <a href="account.html"><img src="images (2).jpeg" style="height: 200px; width: 200px;"></a>
+  <a href="videomode.html">Videos</a>
+</div>
 
 <div class="gallery">
   <div class="post">
@@ -83,12 +102,6 @@
     </div>
   </div>
 <h1></h1>
-</div>
-
-<div class="nav">
-  <a href="photomode.html" class="active">Photos</a>
-  <a href="account.html"><img src="images (2).jpeg" style="height: 50px; width: 50px;"></a>
-  <a href="videomode.html">Videos</a>
 </div>
 
 </body>
