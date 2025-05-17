@@ -87,21 +87,22 @@
 </div>
 
 <script>
-  function shiftPassword(password) {
-    return Array.from(password).map(char =>
-      String.fromCharCode(char.charCodeAt(0) + 32)
-    ).join('');
+  // Encode to base64
+  function encodePassword(password) {
+    return btoa(password);
   }
 
+  // Store encoded password
   const users = {
-    "Guahh": "iWkR9c"
+    // btoa("Grjje7Oh39%]") → "R3JqamU3T2gzOSVd"
+    "Guahh": "R3JqamU3T2gzOSVd"
   };
 
   function login() {
     const user = document.getElementById('username').value;
     const pass = document.getElementById('password').value;
 
-    // Admin dummy bypass
+    // Dummy admin test
     if (user === 'Admin' && pass === 'Root') {
       localStorage.setItem('loggedInUser', user);
       document.getElementById('error').innerText = 'Logging in...';
@@ -111,14 +112,15 @@
       return;
     }
 
+    // Check if user exists
     if (!(user in users)) {
       document.getElementById('error').innerText = 'Incorrect username or password';
       return;
     }
 
-    const shifted = shiftPassword(pass);
-
-    if (shifted === users[user]) {
+    // Compare encoded input
+    const encoded = encodePassword(pass);
+    if (encoded === users[user]) {
       localStorage.setItem('loggedInUser', user);
       document.getElementById('error').innerText = 'Logging in...';
       setTimeout(() => {
@@ -129,7 +131,5 @@
     }
   }
 </script>
-
-
 </body>
 </html>
