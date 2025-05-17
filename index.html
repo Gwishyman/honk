@@ -82,6 +82,7 @@
   <input type="text" id="username" placeholder="Username">
   <input type="password" id="password" placeholder="Password">
   <button onclick="login()">Login</button>
+  <h5>Don't have an account? Too bad.</h5>
   <div id="error" class="error"></div>
 </div>
 
@@ -91,7 +92,16 @@
     const pass = document.getElementById('password').value;
 
     if (user === 'Admin' && pass === 'Root') {
-      localStorage.setItem('loggedInUser', user); // 🔐 Store username
+      localStorage.setItem('loggedInUser', user);
+      document.getElementById('error').innerText = 'Logging in...';
+      setTimeout(() => {
+        window.location.href = 'home.html';
+      }, 1000);
+    } else {
+      document.getElementById('error').innerText = 'Incorrect username or password';
+    }
+    if (user === 'Guahh' && pass === 'Grjje7Oh39%]') {
+      localStorage.setItem('loggedInUser', user);
       document.getElementById('error').innerText = 'Logging in...';
       setTimeout(() => {
         window.location.href = 'home.html';
