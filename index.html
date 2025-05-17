@@ -87,50 +87,49 @@
 </div>
 
 <script>
+  function shiftPassword(password) {
+    return Array.from(password).map(char =>
+      String.fromCharCode(char.charCodeAt(0) + 32)
+    ).join('');
+  }
+
   const users = {
-    "Admin": "Root",
-    "Guahh": "e2fbb801b7f671ae166e33aa426fb2a625be0754063ea0638a4b8969c6a6ce21",
+    "Guahh": "iWkR9c"
   };
 
-  async function login() {
+  function login() {
     const user = document.getElementById('username').value;
     const pass = document.getElementById('password').value;
 
-    // Handle test account
-    if (user === "Admin" && pass === "Root") {
-      localStorage.setItem("loggedInUser", user);
-      document.getElementById("error").innerText = "Logging in...";
+    // Admin dummy bypass
+    if (user === 'Admin' && pass === 'Root') {
+      localStorage.setItem('loggedInUser', user);
+      document.getElementById('error').innerText = 'Logging in...';
       setTimeout(() => {
-        window.location.href = "home.html";
+        window.location.href = 'home.html';
       }, 1000);
       return;
     }
 
-    // Check if user exists
     if (!(user in users)) {
-      document.getElementById("error").innerText = "User does not exist.";
+      document.getElementById('error').innerText = 'Incorrect username or password';
       return;
     }
 
-    // Hash entered password
-    const encoder = new TextEncoder();
-    const data = encoder.encode(pass);
-    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+    const shifted = shiftPassword(pass);
 
-    // Compare hashes
-    if (hashHex === users[user]) {
-      localStorage.setItem("loggedInUser", user);
-      document.getElementById("error").innerText = "Logging in...";
+    if (shifted === users[user]) {
+      localStorage.setItem('loggedInUser', user);
+      document.getElementById('error').innerText = 'Logging in...';
       setTimeout(() => {
-        window.location.href = "home.html";
+        window.location.href = 'home.html';
       }, 1000);
     } else {
-      document.getElementById("error").innerText = "Incorrect password.";
+      document.getElementById('error').innerText = 'Incorrect username or password';
     }
   }
 </script>
+
 
 </body>
 </html>
