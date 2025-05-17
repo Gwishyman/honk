@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Honk - Videos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
   <style>
     html, body {
       margin: 0;
@@ -22,7 +21,7 @@
     }
 
     .section {
-      height: 100vh;
+      height: calc(100vh - 70px);
       width: 100%;
       position: absolute;
       top: 0;
@@ -41,8 +40,8 @@
 
     .overlay {
       position: absolute;
-      bottom: 60px;
-      left: 20px;
+      bottom: 40px;
+      left: 29px;
       color: white;
       font-family: Arial, sans-serif;
       z-index: 1;
@@ -85,10 +84,55 @@
       font-size: 24px;
     }
 
+    .comment-toggle {
+      position: absolute;
+      right: 20px;
+      bottom: 60px;
+      font-size: 36px;
+      color: white;
+      cursor: pointer;
+      z-index: 2;
+      user-select: none;
+    }
+
+    .comment-section {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      background-color: rgba(0,0,0,0.8);
+      color: white;
+      padding: 10px;
+      z-index: 3;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .comment-section input {
+      width: 70%;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    .comment-section button {
+      padding: 8px 12px;
+      font-size: 16px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+
+    .comment-list {
+      max-height: 100px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
     @media (max-width: 768px) {
       .username { font-size: 32px; }
       .caption { font-size: 26px; }
     }
+
     .logo-link {
       position: absolute;
       top: 20px;
@@ -106,6 +150,7 @@
     .logo:hover {
       transform: scale(1.05);
     }
+
     .nav {
       position: fixed;
       bottom: 0;
@@ -127,17 +172,17 @@
       color: #fff;
       font-weight: bold;
     }
-
   </style>
 </head>
+
 <body>
 
 <a href="account.html" class="logo-link">
   <img src="images (2).jpeg" alt="Logo" class="logo">
 </a>
 
-
 <div class="container" id="container">
+  <!-- SECTION 1 -->
   <div class="section" data-index="0">
     <video autoplay muted loop playsinline>
       <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
@@ -150,8 +195,15 @@
       <div class="icon">❤️</div>
       <div class="like-count">69</div>
     </div>
+    <div class="comment-toggle" onclick="toggleComments(this)">💬</div>
+    <div class="comment-section">
+      <div class="comment-list"></div>
+      <input type="text" placeholder="Add a comment..." />
+      <button onclick="postComment(this)">Post</button>
+    </div>
   </div>
 
+  <!-- SECTION 2 -->
   <div class="section" data-index="1">
     <video autoplay muted loop playsinline>
       <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
@@ -164,8 +216,15 @@
       <div class="icon">❤️</div>
       <div class="like-count">419</div>
     </div>
+    <div class="comment-toggle" onclick="toggleComments(this)">💬</div>
+    <div class="comment-section">
+      <div class="comment-list"></div>
+      <input type="text" placeholder="Add a comment..." />
+      <button onclick="postComment(this)">Post</button>
+    </div>
   </div>
 
+  <!-- SECTION 3 -->
   <div class="section" data-index="2">
     <video autoplay muted loop playsinline>
       <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
@@ -178,16 +237,23 @@
       <div class="icon">❤️</div>
       <div class="like-count">80085</div>
     </div>
+    <div class="comment-toggle" onclick="toggleComments(this)">💬</div>
+    <div class="comment-section">
+      <div class="comment-list"></div>
+      <input type="text" placeholder="Add a comment..." />
+      <button onclick="postComment(this)">Post</button>
+    </div>
   </div>
 </div>
 
 <div class="nav">
-  <a href="photomode.html" class="active">Photos</a>
+  <a href="photomode.html">Photos</a>
   <a href="account.html"><img src="images (2).jpeg" style="height: 50px; width: 50px;"></a>
-  <a href="videomode.html">Videos</a>
+  <a href="videomode.html" class="active">Videos</a>
 </div>
 
 <script>
+    localStorage.setItem('loggedInUser', '@gwishyman');
   function toggleLike(button) {
     const heart = button.querySelector('.icon');
     const countDisplay = button.querySelector('.like-count');
@@ -197,10 +263,32 @@
     countDisplay.textContent = count;
   }
 
+  function toggleComments(button) {
+    const section = button.closest('.section');
+    const commentSection = section.querySelector('.comment-section');
+    commentSection.style.display = commentSection.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function postComment(button) {
+  const section = button.closest('.section');
+  const input = section.querySelector('input');
+  const list = section.querySelector('.comment-list');
+  const comment = input.value.trim();
+
+  // Get the logged-in username from localStorage
+  const currentUsername = localStorage.getItem('loggedInUser') || 'Unknown';
+
+  if (comment !== "") {
+    const newComment = document.createElement('div');
+    newComment.innerHTML = `<strong>${currentUsername}</strong>: ${comment}`;
+    list.appendChild(newComment);
+    input.value = "";
+  }
+}
+
   const container = document.getElementById('container');
   const sections = document.querySelectorAll('.section');
   let currentIndex = 0;
-
   let startY = 0;
 
   container.addEventListener('touchstart', e => {
@@ -226,7 +314,7 @@
     });
   }
 
-  // initial render
+  // Initial render
   scrollToIndex(0);
 </script>
 
