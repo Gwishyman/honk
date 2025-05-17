@@ -57,6 +57,8 @@
     <h1>Welcome, <span id="username">User</span>!</h1>
     <p>You have successfully logged in.</p>
     <button onclick="logout()">Logout</button>
+    <button onclick="photomode()">Photos</button>
+    <button onclick="videomode()">Videos</button>
   </div>
 
   <script>
@@ -71,6 +73,12 @@
     function logout() {
       localStorage.removeItem('loggedInUser');
       window.location.href = 'index.html';
+    }
+    function photomode(){
+      window.location.href = "photomode.html";
+    }
+    function videomode(){
+      window.location.href = "videomode.html";
     }
   </script>
 
