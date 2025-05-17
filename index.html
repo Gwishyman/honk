@@ -115,12 +115,6 @@
     } else {
       document.getElementById('error').innerText = 'Incorrect username or password';
     }
-    if (user === 'Admin' && pass === 'Root') {
-      localStorage.setItem('loggedInUser', user);
-      document.getElementById('error').innerText = 'Logging in...';
-      setTimeout(() => {
-        window.location.href = 'home.html';
-      }, 800);
   }
 </script>
 </body>
