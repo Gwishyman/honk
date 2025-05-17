@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Video Feed</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      overflow: hidden;
+    }
+
+    .container {
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    section {
+      position: relative;
+      height: 100vh;
+      scroll-snap-align: start;
+    }
+
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 60px;
+      left: 20px;
+      color: white;
+      font-family: Arial, sans-serif;
+      z-index: 1;
+      line-height: 1.6;
+    }
+
+    .username {
+      font-weight: bold;
+      font-size: 45px;
+    }
+
+    .caption {
+      font-size: 40px;
+    }
+
+    .like-button {
+      position: absolute;
+      right: 20px;
+      bottom: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+      cursor: pointer;
+      font-size: 30px;
+      color: white;
+      user-select: none;
+    }
+
+    .like-button .icon {
+      font-size: 48px;
+      transition: color 0.3s;
+    }
+
+    .liked {
+      color: #ff2d55;
+    }
+
+    .like-count {
+      margin-top: 10px;
+      font-size: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .username { font-size: 32px; }
+      .caption { font-size: 26px; }
+      .like-button { bottom: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <section>
+    <video autoplay muted loop playsinline>
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">
+      <div class="username">@gwishyman</div>
+      <div class="caption">stupid big chungus looking ahh finds a butterfly</div>
+    </div>
+    <div class="like-button" onclick="toggleLike(this)">
+      <div class="icon">❤️</div>
+      <div class="like-count">69</div>
+    </div>
+  </section>
+
+  <section>
+    <video autoplay muted loop playsinline>
+      <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">
+      <div class="username">@gwishyman</div>
+      <div class="caption">goofy ahh bear 😭🙏</div>
+    </div>
+    <div class="like-button" onclick="toggleLike(this)">
+      <div class="icon">❤️</div>
+      <div class="like-count">419</div>
+    </div>
+  </section>
+
+  <section>
+    <video autoplay muted loop playsinline>
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">
+      <div class="username">@gwishyman</div>
+      <div class="caption">THE RABBIT RETURNS? 🙀</div>
+    </div>
+    <div class="like-button" onclick="toggleLike(this)">
+      <div class="icon">❤️</div>
+      <div class="like-count">419</div>
+    </div>
+  </section>
+</div>
+
+<script>
+  function toggleLike(button) {
+    const heart = button.querySelector('.icon');
+    const countDisplay = button.querySelector('.like-count');
+    let count = parseInt(countDisplay.textContent);
+    const liked = heart.classList.toggle('liked');
+    count += liked ? 1 : -1;
+    countDisplay.textContent = count;
+  }
+</script>
+
+</body>
+</html>
