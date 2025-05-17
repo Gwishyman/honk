@@ -87,21 +87,21 @@
 
 <script>
   function login() {
-    const user = document.getElementById('username').value.trim();
-    const pass = document.getElementById('password').value.trim();
+    const user = document.getElementById('username').value;
+    const pass = document.getElementById('password').value;
 
-    if (user && pass) {
-      // Fake authentication for now (only checks for any input)
-      localStorage.setItem("username", user);
+    if (user === 'Admin' && pass === 'Root') {
+      localStorage.setItem('loggedInUser', user); // 🔐 Store username
       document.getElementById('error').innerText = 'Logging in...';
       setTimeout(() => {
         window.location.href = 'home.html';
-      }, 800);
+      }, 1000);
     } else {
-      document.getElementById('error').innerText = 'Please enter both username and password.';
+      document.getElementById('error').innerText = 'Incorrect username or password';
     }
   }
 </script>
+
 
 </body>
 </html>
