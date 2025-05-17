@@ -12,17 +12,33 @@
     }
 
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 10px;
-      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 15px;
     }
 
-    .gallery img {
-      width: 100%;
+    .post {
+      background-color: #1e1e1e;
       border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .post img {
+      width: 100%;
       object-fit: cover;
-      aspect-ratio: 1/1;
+      aspect-ratio: 1 / 1;
+      display: block;
+    }
+
+    .caption {
+      padding: 10px;
+      font-size: 50px;
+    }
+
+    .username {
+      font-weight: bold;
+      margin-bottom: 5px;
     }
 
     .nav {
@@ -39,7 +55,7 @@
     .nav a {
       color: #aaa;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 45px;
     }
 
     .nav a.active {
@@ -51,17 +67,27 @@
 <body>
 
 <div class="gallery">
-  <img src="https://cdn.discordapp.com/attachments/1370641479260835908/1373293221601611886/Copy_of_Guahh_Icon_1.png?ex=6829e27a&is=682890fa&hm=7e6445635effe2af44493f06be21005da742b34b638512f7c3e6b09adafddceb&" alt="photo1">
-  <img src="https://cdn.discordapp.com/attachments/1370641479260835908/1373293221601611886/Copy_of_Guahh_Icon_1.png?ex=6829e27a&is=682890fa&hm=7e6445635effe2af44493f06be21005da742b34b638512f7c3e6b09adafddceb&" alt="photo2">
-  <img src="https://cdn.discordapp.com/attachments/1370641479260835908/1373293221601611886/Copy_of_Guahh_Icon_1.png?ex=6829e27a&is=682890fa&hm=7e6445635effe2af44493f06be21005da742b34b638512f7c3e6b09adafddceb&" alt="photo3">
-  <img src="https://cdn.discordapp.com/attachments/1370641479260835908/1373293221601611886/Copy_of_Guahh_Icon_1.png?ex=6829e27a&is=682890fa&hm=7e6445635effe2af44493f06be21005da742b34b638512f7c3e6b09adafddceb&" alt="photo4">
-  <img src="https://cdn.discordapp.com/attachments/1370641479260835908/1373293221601611886/Copy_of_Guahh_Icon_1.png?ex=6829e27a&is=682890fa&hm=7e6445635effe2af44493f06be21005da742b34b638512f7c3e6b09adafddceb&" alt="photo5">
-  <img src="https://cdn.discordapp.com/attachments/1370641479260835908/1373293221601611886/Copy_of_Guahh_Icon_1.png?ex=6829e27a&is=682890fa&hm=7e6445635effe2af44493f06be21005da742b34b638512f7c3e6b09adafddceb&" alt="photo6">
+  <div class="post">
+    <img src="https://cdn.discordapp.com/attachments/1370641479260835908/1373293221601611886/Copy_of_Guahh_Icon_1.png" alt="photo1">
+    <div class="caption">
+      <div class="username">@gwishymanlikesfrogs</div>
+      🐸
+    </div>
+  </div>
+
+  <div class="post">
+    <img src="https://cdn.discordapp.com/attachments/1370641479260835908/1373293221601611886/Copy_of_Guahh_Icon_1.png" alt="photo2">
+    <div class="caption">
+      <div class="username">@gwishyman</div>
+      test
+    </div>
+  </div>
+
 </div>
 
 <div class="nav">
   <a href="photomode.html" class="active">Photos</a>
-  <a href="account.html">Account</a>
+  <a href="account.html"><img src= "images (2).jpeg"></a>
   <a href="videomode.html">Videos</a>
 </div>
 
