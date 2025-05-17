@@ -89,6 +89,28 @@
       .caption { font-size: 26px; }
       .like-button { bottom: 100px; }
     }
+
+    .nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #1e1e1e;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      border-top: 1px solid #333;
+    }
+
+    .nav a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .nav a.active {
+      color: #fff;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -136,7 +158,12 @@
     </div>
   </section>
 </div>
-
+<div class="nav">
+  <a href="photomode.html" class="active">Photos</a>
+  <a href="account.html">Account</a>
+  <a href="videomode.html">Videos</a>
+</div>
+  
 <script>
   function toggleLike(button) {
     const heart = button.querySelector('.icon');
