@@ -55,15 +55,17 @@
 
   <div class="container">
     <h1>Welcome, <span id="username">User</span>!</h1>
-    <p>You have successfully logged in.</p>
+    <p id="statustext">You have successfully logged in.</p>
     <button onclick="logout()">Logout</button>
     <button onclick="photomode()">Photos</button>
     <button onclick="videomode()">Videos</button>
   </div>
 
   <script>
-    // Load username from localStorage
     const username = localStorage.getItem('loggedInUser');
+    if (username == "Guahh") {
+      document.getElementById('statustext').innerText = "You are a moderator!"
+    }
     if (!username) {
       window.location.href = 'index.html'; // Not logged in
     } else {
