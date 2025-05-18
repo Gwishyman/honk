@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+0<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -66,8 +66,11 @@
     if (username == "Guahh") {
       document.getElementById('statustext').innerText = "You are a moderator!"
     }
+    if (username == "realskug") {
+      document.getElementById('statustext').innerText = "#FREESKUG"
+    }
     if (!username) {
-      window.location.href = 'index.html'; // Not logged in
+      window.location.href = 'index.html';
     } else {
       document.getElementById('username').innerText = username;
     }
