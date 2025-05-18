@@ -17,7 +17,7 @@
 </head>
 <body>
   <h1>Account</h1>
-  <p id="user"></p>
+  <p id="usertext"></p>
   <a href="home.html">Back to Menu</a>
   <a href="index.html" onclick="logout()">Log Out</a>
 
@@ -25,9 +25,7 @@
     const user = localStorage.getItem("loggedInUser");
     if (!user) window.location.href = "index.html";
 
-    document.getElementById("user").textContent = "Username: @" + loggedInUser;
-    document.getElementById("likes").textContent = "Likes Given: " + (localStorage.getItem("likes_" + user) || "0");
-
+    document.getElementById("usertext").textContent = "Username: @" + loggedInUser;
     function logout() {
       localStorage.removeItem("loggedInUser");
     }
