@@ -99,17 +99,17 @@
   };
 
   function login() {
-    const user = document.getElementById('username').value;
-    const pass = document.getElementById('password').value;
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-    if (!(user in users)) {
+    if (!(username in users)) {
       document.getElementById('error').innerText = 'Incorrect username or password';
       return;
     }
 
-    const encoded = encodePassword(pass);
-    if (encoded === users[user]) {
-      localStorage.setItem('loggedInUser', user);
+    const encoded = encodePassword(password);
+    if (encoded === users[username]) {
+      localStorage.setItem('loggedInUser', username);
       document.getElementById('error').innerText = 'Logging in...';
       setTimeout(() => {
         window.location.href = 'home.html';
@@ -117,11 +117,8 @@
     } else {
       document.getElementById('error').innerText = 'Incorrect username or password';
     }
-const user = { username: 'actualUsername' };
-localStorage.setItem('loggedInUser', JSON.stringify(user));
-
   }
-
 </script>
+
 </body>
 </html>
