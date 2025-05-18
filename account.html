@@ -25,11 +25,11 @@
     const user = localStorage.getItem("loggedInUser");
     if (!user) window.location.href = "index.html";
 
-    document.getElementById("user").textContent = "Username: @" + user;
+    document.getElementById("user").textContent = "Username: @" + loggedInUser;
     document.getElementById("likes").textContent = "Likes Given: " + (localStorage.getItem("likes_" + user) || "0");
 
     function logout() {
-      localStorage.removeItem("username");
+      localStorage.removeItem("loggedInUser");
     }
   </script>
 </body>
