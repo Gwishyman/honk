@@ -262,7 +262,7 @@
 </div>
 
 <script>
-    localStorage.setItem('loggedInUser', '@gwishyman');
+    //localStorage.setItem('loggedInUser', '@gwishyman'); I need it later.
   function toggleLike(button) {
     const heart = button.querySelector('.icon');
     const countDisplay = button.querySelector('.like-count');
@@ -284,8 +284,9 @@
   const list = section.querySelector('.comment-list');
   const comment = input.value.trim();
 
-  // Get the logged-in username from localStorage
-  const currentUsername = localStorage.getItem('loggedInUser') || 'Unknown';
+  // Get the logged-in user from localStorage
+  const userData = JSON.parse(localStorage.getItem('loggedInUser'));
+  const currentUsername = userData?.username || 'Unknown';
 
   if (comment !== "") {
     const newComment = document.createElement('div');
@@ -294,6 +295,11 @@
     input.value = "";
   }
 }
+  
+  if (!localStorage.getItem('loggedInUser')) {
+  localStorage.setItem('loggedInUser', '@unknown-user');
+}
+
 
   const container = document.getElementById('container');
   const sections = document.querySelectorAll('.section');
